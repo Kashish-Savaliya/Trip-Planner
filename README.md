@@ -1,4 +1,4 @@
-# PravasPedia
+# प्रवासPedia
 
 PravasPedia is a web application built on the MERN (MongoDB, Express.js, React, Node.js) stack. It serves as a guide for travelers to explore hidden places, uncover untold stories, and plan personalized travel itineraries for 2 or 3 days.
 
