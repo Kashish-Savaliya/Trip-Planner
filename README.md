@@ -33,7 +33,7 @@ To run the PravasPedia project locally, follow these steps:
 - Add environment variables for MongoDB connection URI, API keys (if any), etc.
 
 4. **Start the development server**:
-```     npm start ```
+```npm start ```
 5. **Open the application**:
 Open your web browser and navigate to `http://localhost:3000` to view PravasPedia.
 
