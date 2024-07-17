@@ -1,0 +1,64 @@
+body, html {
+    /* font-family: 'Noto Sans', sans-serif;  */
+    font-family: 'Lora', serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.back {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+.img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    z-index: -1;
+}
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    /* color: #39006E; */
+    color: #600200;
+}
+.button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.5em;
+    color: rgb(123, 139, 30);
+    background-color: transparent;
+    /* border: 2px solid white; */
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: rgba(155, 37, 37, 0.2);
+}
+.quote {
+    font-size: 1.7em;
+    margin-top: -65px;
+    max-width: 50%;
+    transition: opacity 1s;
+}
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    10%, 90% { opacity: 1; }
+}
+.quote { 
+    animation: fadeInOut 20s infinite; 
+}

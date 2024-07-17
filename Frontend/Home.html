@@ -5,71 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PravasPedia</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body, html {
-            font-family: 'Lora', serif;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        .back {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-        }
-        .img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-            z-index: -1;
-        }
-        .content {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100vw;
-            text-align: center;
-            /* color: #39006E; */
-            color: #600200;
-        }
-        .button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1.5em;
-            color: rgb(123, 139, 30);
-            background-color: transparent;
-            /* border: 2px solid white; */
-            border: 2px solid rgba(255,255,255,0.5);
-            border-radius: 5px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: rgba(155, 37, 37, 0.2);
-        }
-        .quote {
-            font-size: 1.7em;
-            margin-top: -65px;
-            max-width: 50%;
-            transition: opacity 1s;
-        }
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0; }
-            10%, 90% { opacity: 1; }
-        }
-        .quote { 
-            animation: fadeInOut 20s infinite; 
-        }
-    </style>
+
+    <!-- Hindi Font Link : 
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
     <div class="back">
@@ -77,7 +17,7 @@
         <div class="content">
             <!-- <h2>Explore hidden gems in India!!!</h2> -->
                 <p class="quote">Embark on a journey of exploration with PravasPedia – where every corner has a tale to tell.</p>
-            <a href="#" class="button">PravasPedia</a>
+            <a href="photo.html" class="button">प्रवासPedia</a>
         </div>
     </div>
 </body> 
