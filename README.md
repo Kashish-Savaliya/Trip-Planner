@@ -24,7 +24,7 @@ To run the PravasPedia project locally, follow these steps:
 ```
     git clone https://github.com/your-username/pravasPedia.git
 ```
-3. **Install dependencies**:
+2. **Install dependencies**:
 ``` cd pravasPedia
     npm install
 ```
