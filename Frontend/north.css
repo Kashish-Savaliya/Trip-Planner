@@ -38,13 +38,14 @@ body, html {
     margin-top: 10px; */
     height: 250px;
     width: 211px;
-    border: 2px solid #5E6000;
+    border: 4px solid #5E6000;
     justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #fff;
-    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.6);
+    /* box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.6); */
+    box-shadow: 14px 19px 8px 0;
     transition: 0.3s;
     border-radius: 12px;
     padding-top: 17px;
@@ -69,8 +70,37 @@ body, html {
   
   a{
     text-decoration: none;
-    color:#C86437;
+    /* color:#C86437; */
+    color:#5E6000;
     font-family: cursive;
     font-size: larger;
   }
   
+  .arun{
+    background-color: #704747;
+  }
+
+  .megh{
+    background-color:#315d83;
+  }
+
+  .miz{
+    background-color: #AF4545;
+  }
+
+  .nag{
+    background-color: #193D71;
+  }
+
+  .del{
+    background-color: #FFC740;
+  }
+.guj{
+  background-color: #ff970a;
+}
+.mp{
+  background-color: #e3fffd;
+}
+.mh{
+  background-color: #67b5bb;
+}
