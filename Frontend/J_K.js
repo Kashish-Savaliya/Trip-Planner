@@ -10,7 +10,7 @@ function showSlides() {
         slideIndex = 1;
     }
     slides[slideIndex - 1].classList.add("active");
-    setTimeout(showSlides, 5000);
+    setTimeout(showSlides, 7000);
 }
 
 function plusSlides(n) {
