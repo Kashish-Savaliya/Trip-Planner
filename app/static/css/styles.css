@@ -1,0 +1,219 @@
+/* body {
+    background-image: url("C:\\Users\\abc\\Desktop\\PravasPedia\\pravaspedia\\app\\static\\Images\\back.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+} */
+body, html {
+    /* font-family: 'Noto Sans', sans-serif;  */
+    /* font-family: 'Lora', serif; */
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.back {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+.img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: no-repeat center center/cover;
+    opacity: 0.3;
+    z-index: -1;
+}
+/* Styling for the form container */
+.form-container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Center text in headers */
+h2, h1 {
+    text-align: center;
+    color: #fff;
+}
+
+/* Styling for form labels */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #ddd;
+}
+
+/* Styling for form inputs */
+input[type="email"], input[type="password"], input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+}
+
+/* Styling for submit button */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Hover effect for submit button */
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Styling for links */
+a {
+    color: #00f;
+    text-decoration: none;
+}
+
+/* Hover effect for links */
+a:hover {
+    text-decoration: underline;
+}
+
+/* Styling for unordered lists */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Styling for list items */
+li {
+    color: #f00;
+}
+.btn_one{
+    color: rgb(96, 2, 0);
+    font-size: 30px;
+    font-weight: 700;
+    position: absolute;
+    left: 16px;
+    line-height: 60px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+.btn_one:hover{
+    font-size:60px ;
+}
+
+.sidebar_menu{
+    opacity: 0.5;
+    position: fixed;
+    left: -300px;
+    height: 100vh;
+    width: 300px;
+    background-color:rgba(255,255,255,0.6) ;
+    box-shadow: 0 0 6px #027C00;
+    transition: all 0.3s linear;
+}
+.sidebar_menu .logo{
+    position: absolute;
+    width: 100%;
+    line-height:60px;
+    box-shadow: 0 2px 4px rgba(255,255,255,0.5);
+    height: 60px;
+}
+.sidebar_menu .logo a{
+    position: absolute;
+    left: 70px;
+    color: #7A007C;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;  
+}
+.sidebar_menu .menu{
+    
+    left : -30px;
+    color: rgba(201, 81, 81, 0.6);
+    position: absolute;
+    width: 100%;
+    top: 120px;
+}
+.sidebar_menu .btn_two i{
+    color:#005E60;
+    font-size: 25px;
+    font-weight: 700;
+    position: absolute;
+    left: 270px;
+    opacity: 0;
+    line-height: 60px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+.sidebar_menu .btn_two i:hover{
+    font-size: 40px;  
+}
+
+.sidebar_menu .menu li{
+    list-style: none;
+    margin-top: 6px;
+    padding: 14px 20px;
+}
+.sidebar_menu .menu li:hover{
+    box-shadow: 0 0 4px rgba(122, 0, 124, 0.7);
+}
+
+.sidebar_menu .menu i,a{
+    text-decoration: none;
+    /* color: rgb(82, 31, 31); */
+    color: rgb(0, 64, 124);
+    font-size: 20px;
+}
+.sidebar_menu .menu i{
+    padding-right: 8px;
+}
+.sidebar_menu .social_media{
+    position: absolute;
+    left: 15%;
+    bottom: 80px;
+}
+.sidebar_menu .social_media i{
+    color: rgb(122, 0, 124);
+    opacity: 0.5;
+    padding: 0 15px;
+}
+.sidebar_menu .social_media i:hover{
+    opacity: 1;
+    transform: scale(1.1);
+}
+#check{
+    display: none;
+}
+#check:checked ~ .sidebar_menu{
+    left: 0;
+}
+#check:checked ~ .btn_one{
+    opacity: 0;
+}
+#check:checked ~ .sidebar_menu .btn_two i{
+    opacity: 1;
+}
