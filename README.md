@@ -15,9 +15,9 @@ PravasPedia is a web application built on the MERN (MongoDB, Express.js, React, 
 
 ## Technologies Used
 
-- **Frontend**: React.js
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
+- **Frontend**: HTML. CSS, JS
+- **Backend**: Python(Django)
+- **Database**: SQLite
 - **Deployment**: [Platform Name] (e.g., Heroku, AWS, etc.)
 
 ## Getting Started
@@ -26,7 +26,7 @@ To run the PravasPedia project locally, follow these steps:
 
 1. **Clone the repository**:
 ```
-    git clone https://github.com/your-username/pravasPedia.git
+    git clone https://github.com/Kashish-Savaliya/pravasPedia.git
 ```
 2. **Install dependencies**:
 ``` cd pravasPedia
