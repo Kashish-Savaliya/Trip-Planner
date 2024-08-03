@@ -15,9 +15,12 @@ PravasPedia is a web application built on the MERN (MongoDB, Express.js, React, 
 
 ## Technologies Used
 
+
 - **Frontend**: HTML. CSS, JS
 - **Backend**: Python(Django)
 - **Database**: SQLite
+
+
 - **Deployment**: [Platform Name] (e.g., Heroku, AWS, etc.)
 
 ## Getting Started

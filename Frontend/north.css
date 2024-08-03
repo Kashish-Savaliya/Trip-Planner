@@ -1,0 +1,118 @@
+body, html {
+    /* font-family: 'Noto Sans', sans-serif;  */
+    font-family: 'Lora', serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.back {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+.img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    z-index: -1;
+}
+.content{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+}
+.card{
+    /* padding-top: 12px;
+    margin-top: 10px; */
+    height: 250px;
+    width: 211px;
+    border: 4px solid #5E6000;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    /* box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.6); */
+    box-shadow: 14px 19px 8px 0;
+    transition: 0.3s;
+    border-radius: 12px;
+    padding-top: 17px;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  }
+  
+  .card-img{
+    
+    width: 70%;
+    max-width: 100%;
+    height: 70%; /* Adjust height as needed */
+  }
+  
+  .card-body{
+    flex: 1; /* Allow body to fill remaining space */
+    padding: 15px;
+    text-align: center;
+  }
+  
+  a{
+    text-decoration: none;
+    /* color:#C86437; */
+    color:#5E6000;
+    font-family: cursive;
+    font-size: larger;
+  }
+  
+  .arun{
+    background-color: #704747;
+  }
+
+  .megh{
+    background-color:#315d83;
+  }
+
+  .miz{
+    background-color: #AF4545;
+  }
+
+  .nag{
+    background-color: #193D71;
+  }
+
+  .del{
+    background-color: #FFC740;
+  }
+.guj{
+  background-color: #ff970a;
+}
+.mp{
+  background-color: #e3fffd;
+}
+.mh{
+  background-color: #67b5bb;
+}
+/* .goa{
+  background: linear-gradient(#ffe091, #f8f8a8, #5ed8ee);
+} */
+.as{
+  background-color: #9CD2EC;
+}
+.tn{
+  background-color: #EC8950;
+}
+.hp{
+  background-color: #17A64A;
+}
