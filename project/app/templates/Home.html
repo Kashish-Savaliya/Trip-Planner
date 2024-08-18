@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PravasPedia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Hindi Font Link : 
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="{% static "css/home.css" %}">
+</head>
+<body>
+    <div class="back">
+        <img src="{% static "Images/back.jpg" %}" alt="Background Image" class="img">
+        <div class="content">
+            <!-- <h2>Explore hidden gems in India!!!</h2> -->
+                <p class="quote">Embark on a journey of exploration with PravasPedia – where every corner has a tale to tell.</p>
+            <a href="{% url 'main' %}" class="button">प्रवासPedia</a>
+        </div>
+    </div>
+</body> 
+
+</html>
