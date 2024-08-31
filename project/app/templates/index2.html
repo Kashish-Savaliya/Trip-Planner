@@ -113,7 +113,49 @@
         
         <h4><i class="fas fa-road icon"></i> {{nearbyplaces.2.placename}}</h4>
         <p>{{nearbyplaces.2.desc}}.</p>
+
         
+        <h3>Travel and Cost Estimation</h3>
+        <h4>Transportation</h4>
+    <ul>
+    {% for detail in transportation %}
+        <li><strong>{{ detail.title }}:</strong> {{ detail.description }}</li>
+        {% if detail.cost %}
+            <p>Cost: {{ detail.cost }}</p>
+        {% endif %}
+        {% if detail.additional_info %}
+            <p>Additional Info: {{ detail.additional_info }}</p>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+<h4>Accommodation</h4>
+<ul>
+    {% for detail in accommodation %}
+        <li><strong>{{ detail.title }}:</strong> {{ detail.description }} (Cost: {{ detail.cost }})</li>
+    {% endfor %}
+</ul>
+
+<h4>Food</h4>
+<ul>
+    {% for detail in food %}
+        <li><strong>{{ detail.title }}:</strong> {{ detail.description }} (Cost: {{ detail.cost }})</li>
+    {% endfor %}
+</ul>
+
+<h4>Sightseeing and Activities</h4>
+<ul>
+    {% for detail in sightseeing %}
+        <li><strong>{{ detail.title }}:</strong> {{ detail.description }} (Cost: {{ detail.cost }})</li>
+    {% endfor %}
+</ul>
+
+<h4>Overall Estimated Cost for a 1/2-Day Trip</h4>
+<ul>
+    {% for detail in overall_cost %}
+        <li><strong>{{ detail.title }}:</strong> {{ detail.cost }}</li>
+    {% endfor %}
+</ul>
     </div>
     <script src="{% static "js/script2.js" %}"></script>
 </body>
