@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Guide Reviews</title>
+    <link rel="stylesheet" href="{% static "css/review.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+      function getRatingStars(rating) {
+          let stars = "";
+          for (let i = 0; i < rating; i++) {
+              stars += '<i class="fas fa-star"></i>';
+          }
+          for (let i = rating; i < 5; i++) {
+              stars += '<i class="far fa-star"></i>';
+          }
+          return stars;
+      }
+      
+      document.addEventListener("DOMContentLoaded", function () {
+          const reviews = document.querySelectorAll(".review-card .rating");
+          reviews.forEach(function (review) {
+              const ratingValue = parseInt(review.dataset.rating); // Get rating from data attribute
+              review.innerHTML = getRatingStars(ratingValue); // Replace rating text with stars
+          });
+      });
+      </script>
+      
+</head>
+<body>
+    <div class="back">
+        <img src="{% static "Images/back.jpg" %}" alt="Background Image" class="img">
+        <div>
+          <input type="checkbox" id="check" />
+          <div class="btn_one">
+            <label for="check">
+              <i class="fa-solid fa-bars"></i>
+            </label>
+          </div>
+    
+          <div class="sidebar_menu">
+            <div class="logo">
+              <a href="{% url 'main' %}">प्रवासPedia</a>
+            </div>
+    
+            <div class="btn_two">
+              <label for="check">
+                <i class="fa-solid fa-xmark"></i>
+              </label>
+            </div>
+    
+            <div class="menu">
+              <ul>
+                <li>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  <a href="{% url 'login' %}">LogIn</a>
+                </li>
+                <li>
+                  <i class="fa-solid fa-right-to-bracket"></i>
+                  <a href="{% url 'register' %}">Register</a>
+                </li>
+                <li>
+                  <i class="fa-solid fa-image"></i>
+                  <a href="#">Gallery</a>
+                </li>
+                <li>
+                  <i class="fa-regular fa-map"></i>
+                  <a href="{% url 'stories' %}">Untold Stories</a>
+                </li>
+                <li>
+                  <i class="fa-solid fa-route"></i>
+                  <a href="#">Itineraries</a>
+                </li>
+                <li>
+                  <i class="fa-regular fa-comments"></i>
+                  <a href="{% url 'review' %}">Feedback</a>
+                </li>
+              </ul>
+            </div>
+    
+            <div class="social_media">
+              <ul>
+                <a href="#"><i class="fa-brands fa-instagram"></i></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+              </ul>
+            </div>
+          </div>
+    <div class="container">
+        <h1>Share Your Experience</h1>
+        <form id="review-form" method="POST" action="{% url 'review' %}">{% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="location">Location Visited:</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating" required>
+                <option value="5">5 - Excellent</option>
+                <option value="4">4 - Good</option>
+                <option value="3">3 - Average</option>
+                <option value="2">2 - Poor</option>
+                <option value="1">1 - Terrible</option>
+            </select>
+
+            <label for="review">Review:</label>
+            <textarea id="review" name="review" rows="5" required></textarea>
+
+            <button type="submit">Submit Review</button>
+        </form>
+
+        <h2>What Our Travelers Say</h2>
+        <div id="dummy-reviews-container" class="reviews-grid">
+            <!-- Dummy Reviews will be loaded here -->
+        </div>
+
+        <h2>Latest Reviews</h2>
+        {% for review in reviews %}
+          <div id="reviews-container" class="reviews-grid">
+            <div class="review-card">
+              <i class="fas fa-map-marker-alt"></i>
+              <h3>{{review.name}}</h3>
+              <div class="location">{{review.location}}</div>
+              <!-- Use data-rating attribute to store rating -->
+              <div class="rating" data-rating="{{ review.rating }}"></div>
+              <p>{{review.review}}</p>
+            </div>
+          </div>
+        {% endfor %} 
+    </div>
+
+    <script src="{% static "js/review.js" %}"></script>
+</body>
+</html>

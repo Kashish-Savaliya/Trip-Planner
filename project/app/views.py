@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import User, State, Place, Nearby_Place, travel_and_cost
+from .models import User, State, Place, Nearby_Place, travel_and_cost, Review
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password, check_password
 import requests
@@ -85,11 +85,11 @@ def place(request, direction, state, place):
     place_obj = get_object_or_404(Place, place_name=place,state__state_name=state)
     nearby_places = place_obj.nearby_places.all()
     histories = place_obj.histories.all()
-    transportation = travel_and_cost.objects.filter(category='TRANSPORTATION')
-    accommodation = travel_and_cost.objects.filter(category='ACCOMMODATION')
-    food = travel_and_cost.objects.filter(category='FOOD')
-    sightseeing = travel_and_cost.objects.filter(category='SIGHTSEEING')
-    overall_cost = travel_and_cost.objects.filter(category='OVERALL_COST')
+    transportation = place_obj.travel_and_cost.filter(category='TRANSPORTATION')
+    accommodation = place_obj.travel_and_cost.filter(category='ACCOMMODATION')
+    food = place_obj.travel_and_cost.filter(category='FOOD')
+    sightseeing = place_obj.travel_and_cost.filter(category='SIGHTSEEING')
+    overall_cost = place_obj.travel_and_cost.filter(category='OVERALL_COST')
     context = {
         'place':place_obj,'nearbyplaces':nearby_places,'histories':histories,
         'transportation': transportation,
@@ -134,8 +134,17 @@ def plan_trip(request):
         return render(request, 'plan_trip.html', {'form': form})
     
 
-def feedback(request):
-    return render(request, 'feedback.html')
+def getFeedback(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        location = request.POST.get('location')
+        rating = request.POST.get('rating')
+        review_text = request.POST.get('review')
+        feedback = Review(name=name, location=location, rating = rating, review=review)
+        feedback.save()
+    reviews = Review.objects.all()
+    print(reviews)
+    return render(request, 'review.html',{'reviews':reviews})
 
 def get_hotels(destination, budget):
     response = requests.get('API_URL',params={'location': destination, 'budget': budget})

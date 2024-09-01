@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="{% static "css/style2.css" %}">
   </head>
   <body>
-    {% comment %} <input type="checkbox" id="check" />
+    
+    <input type="checkbox" id="check" />
       <div class="btn_one">
         <label for="check">
           <i class="fa-solid fa-bars"></i>
@@ -62,7 +63,7 @@
             </li>
             <li>
               <i class="fa-regular fa-comments"></i>
-              <a href="#">Feedback</a>
+              <a href="{% url 'review' %}">Feedback</a>
             </li>
           </ul>
         </div>
@@ -73,7 +74,8 @@
             <a href="#"><i class="fa-brands fa-youtube"></i></a>
           </ul>
         </div>
-      </div> {% endcomment %}
+        </div> 
+      
  
     <div class="slideshow-container">
         <div class="slide active">
@@ -119,12 +121,13 @@
         <h4>Transportation</h4>
     <ul>
     {% for detail in transportation %}
-        <li><strong>{{ detail.title }}:</strong> {{ detail.description }}</li>
+        <li><strong>{{ detail.title }}:</strong></li>
+        <p> {{ detail.description }} </p>
         {% if detail.cost %}
             <p>Cost: {{ detail.cost }}</p>
         {% endif %}
         {% if detail.additional_info %}
-            <p>Additional Info: {{ detail.additional_info }}</p>
+            <p>{{ detail.additional_info }}</p>
         {% endif %}
     {% endfor %}
 </ul>
@@ -146,7 +149,7 @@
 <h4>Sightseeing and Activities</h4>
 <ul>
     {% for detail in sightseeing %}
-        <li><strong>{{ detail.title }}:</strong> {{ detail.description }} (Cost: {{ detail.cost }})</li>
+        <li><strong>{{ detail.title }}:</strong> {{ detail.description }}</li>
     {% endfor %}
 </ul>
 
