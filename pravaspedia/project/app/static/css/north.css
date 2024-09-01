@@ -1,0 +1,227 @@
+body, html {
+    /* font-family: 'Noto Sans', sans-serif;  */
+    font-family: 'Lora', serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.back {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+.img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    z-index: -1;
+}
+.content{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+}
+.card{
+    /* padding-top: 12px;
+    margin-top: 10px; */
+    height: 250px;
+    width: 211px;
+    border: 4px solid #5E6000;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    /* box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.6); */
+    box-shadow: 14px 19px 8px 0;
+    transition: 0.3s;
+    border-radius: 12px;
+    padding-top: 17px;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  }
+  
+  .card-img{
+    
+    width: 70%;
+    max-width: 100%;
+    height: 70%; /* Adjust height as needed */
+  }
+  
+  .card-body{
+    flex: 1; /* Allow body to fill remaining space */
+    padding: 15px;
+    text-align: center;
+  }
+  
+  a{
+    text-decoration: none;
+    /* color:#C86437; */
+    color:#5E6000;
+    font-family: cursive;
+    font-size: larger;
+  }
+  
+  .arun{
+    background-color: #704747;
+  }
+
+  .megh{
+    background-color:#315d83;
+  }
+
+  .miz{
+    background-color: #AF4545;
+  }
+
+  .nag{
+    background-color: #193D71;
+  }
+
+  .del{
+    background-color: #FFC740;
+  }
+.guj{
+  background-color: #ff970a;
+}
+.mp{
+  background-color: #e3fffd;
+}
+.mh{
+  background-color: #67b5bb;
+}
+/* .goa{
+  background: linear-gradient(#ffe091, #f8f8a8, #5ed8ee);
+} */
+.as{
+  background-color: #9CD2EC;
+}
+.tn{
+  background-color: #EC8950;
+}
+.hp{
+  background-color: #17A64A;
+}
+.od{
+  background-color: black;
+}
+.btn_one{
+  color: rgb(96, 2, 0);
+  font-size: 30px;
+  font-weight: 700;
+  position: absolute;
+  left: 16px;
+  line-height: 60px;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+.btn_one:hover{
+  font-size:60px ;
+}
+
+.sidebar_menu{
+  opacity: 0.5;
+  position: fixed;
+  left: -300px;
+  height: 100vh;
+  width: 300px;
+  background-color:rgba(255,255,255,0.6) ;
+  box-shadow: 0 0 6px #027C00;
+  transition: all 0.3s linear;
+}
+.sidebar_menu .logo{
+  position: absolute;
+  width: 100%;
+  line-height:60px;
+  box-shadow: 0 2px 4px rgba(255,255,255,0.5);
+  height: 60px;
+}
+.sidebar_menu .logo a{
+  position: absolute;
+  left: 70px;
+  color: #7A007C;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;  
+}
+.sidebar_menu .menu{
+  
+  left : -30px;
+  color: rgba(201, 81, 81, 0.6);
+  position: absolute;
+  width: 100%;
+  top: 120px;
+}
+.sidebar_menu .btn_two i{
+  color:#005E60;
+  font-size: 25px;
+  font-weight: 700;
+  position: absolute;
+  left: 270px;
+  opacity: 0;
+  line-height: 60px;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+.sidebar_menu .btn_two i:hover{
+  font-size: 40px;  
+}
+
+.sidebar_menu .menu li{
+  list-style: none;
+  margin-top: 6px;
+  padding: 14px 20px;
+}
+.sidebar_menu .menu li:hover{
+  box-shadow: 0 0 4px rgba(122, 0, 124, 0.7);
+}
+
+.sidebar_menu .menu i,a{
+  text-decoration: none;
+  /* color: rgb(82, 31, 31); */
+  color: rgb(0, 64, 124);
+  font-size: 20px;
+}
+.sidebar_menu .menu i{
+  padding-right: 8px;
+}
+.sidebar_menu .social_media{
+  position: absolute;
+  left: 15%;
+  bottom: 80px;
+}
+.sidebar_menu .social_media i{
+  color: rgb(122, 0, 124);
+  opacity: 0.5;
+  padding: 0 15px;
+}
+.sidebar_menu .social_media i:hover{
+  opacity: 1;
+  transform: scale(1.1);
+}
+#check{
+  display: none;
+}
+#check:checked ~ .sidebar_menu{
+  left: 0;
+}
+#check:checked ~ .btn_one{
+  opacity: 0;
+}
+#check:checked ~ .sidebar_menu .btn_two i{
+  opacity: 1;
+}
