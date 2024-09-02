@@ -16,5 +16,6 @@ urlpatterns = [
     path('stories/south', views.south,name="south"),
     path('stories/<str:direction>/<str:state>',views.hidden_gems,name='hidden_gems'),
     path('stories/<str:direction>/<str:state>/<str:place>',views.place,name='place'),
+    path('review/',views.getFeedback ,name="review"),
 
 ]

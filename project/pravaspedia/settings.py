@@ -127,3 +127,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Managing media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')         
 MEDIA_URL = '/media/' 
+<<<<<<< HEAD
+=======
+
+# BASE_DIR in Django refers to the base directory of your Django project, 
+# typically where your manage.py file is located. When you use os.path.join(BASE_DIR, 'media') to define MEDIA_ROOT,
+#  it creates a folder named media inside the base directory of your Django project.
+# os.path.abspath(__file__): Returns the absolute path of the current file (settings.py).
+# os.path.dirname(...): Called twice to move up two levels in the directory structure.
+# The first os.path.dirname moves up from settings.py to the parent directory, which is the settings folder.
+# The second os.path.dirname moves up from the settings folder to the project root where manage.py is located.
+# MEDIA_ROOT: The absolute filesystem path to the directory where Django will store user-uploaded files.
+# MEDIA_URL: The URL that serves the media files stored in MEDIA_ROOT. It should be a URL-relative path (e.g., '/media/').
+>>>>>>> fed5c0eb92134dfee6322d070ea6ca5e00e4ea71
