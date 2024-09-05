@@ -13,12 +13,11 @@ from django.http import FileResponse, Http404
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from geopy.geocoders import Nominatim
-from .mail import schedule_emails, run_scheduler, start_scheduler_thread
 from django.core.mail import send_mail
 from django.conf import settings
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
-# from .mail import schedule_emails, run_scheduler, start_scheduler_thread
+
 # Create your views here.
 
 
