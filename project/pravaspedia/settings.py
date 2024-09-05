@@ -118,6 +118,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'app', 'static')
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -127,8 +130,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Managing media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')         
 MEDIA_URL = '/media/' 
-<<<<<<< HEAD
-=======
 
 # BASE_DIR in Django refers to the base directory of your Django project, 
 # typically where your manage.py file is located. When you use os.path.join(BASE_DIR, 'media') to define MEDIA_ROOT,
@@ -139,4 +140,20 @@ MEDIA_URL = '/media/'
 # The second os.path.dirname moves up from the settings folder to the project root where manage.py is located.
 # MEDIA_ROOT: The absolute filesystem path to the directory where Django will store user-uploaded files.
 # MEDIA_URL: The URL that serves the media files stored in MEDIA_ROOT. It should be a URL-relative path (e.g., '/media/').
->>>>>>> fed5c0eb92134dfee6322d070ea6ca5e00e4ea71
+
+# URL to redirect to for login
+LOGIN_URL = 'login'
+
+# URL to redirect to after a successful login
+LOGIN_REDIRECT_URL = 'main'
+
+# URL to redirect to after a successful logout
+LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'pravaspedia@gmail.com'
+EMAIL_HOST_PASSWORD = 'osua ienz rpcs memj'
+DEFAULT_FROM_EMAIL = 'pravaspedia@gmail.com'  

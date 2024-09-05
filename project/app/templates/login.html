@@ -43,30 +43,43 @@
 
         <div class="menu">
           <ul>
-            <li>
-              <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              <a href="{% url 'login' %}">LogIn</a>
+            {% if user.is_authenticated %}
+              <li>
+                <i class="fa-solid fa-route"></i>
+                <a href="{% url "plan_trip" %}">Itineraries</a>
+              </li>
+              <li>
+                <i class="fa-regular fa-comments"></i>
+                <a href="{% url 'review' %}">Feedback</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; color: inherit; color: rgb(0, 64, 124); cursor: pointer; font-size: large;">
+                        LogOut
+                    </button>
+                </form>
             </li>
-            <li>
-              <i class="fa-solid fa-right-to-bracket"></i>
-              <a href="{% url 'register' %}">Register</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-image"></i>
-              <a href="#">Gallery</a>
-            </li>
-            <li>
-              <i class="fa-regular fa-map"></i>
-              <a href="{% url 'stories' %}">Untold Stories</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-route"></i>
-              <a href="#">Itineraries</a>
-            </li>
-            <li>
-              <i class="fa-regular fa-comments"></i>
-              <a href="{% url 'review' %}">Feedback</a>
-            </li>
+            
+            {% else %}
+              <li>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <a href="{% url 'login' %}">LogIn</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <a href="{% url 'register' %}">Register</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-image"></i>
+                <a href="#">Gallery</a>
+              </li>
+              <li>
+                <i class="fa-regular fa-map"></i>
+                <a href="{% url 'stories' %}">Untold Stories</a>
+              </li>
+            {% endif %}
           </ul>
         </div>
 
@@ -80,15 +93,10 @@
 
     <div class="form-container">
         <h2>Login</h2>
-        <form method="POST">
+        <form method="post">
           {% csrf_token %}
-            <label for="email">Email ID:</label>
-            <input type="email" id="email" name="email" required>
-            <br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <br>
-            <input type="submit" value="Login">
+          {{ form.as_p }}
+          <input type="submit" value="Log In">
         </form>
         <br>
         <a href="{% url "register" %}">Don't have an account? Register</a>

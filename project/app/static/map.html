@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_5d0f4cf27330bc7902b67d640be22049 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_5d0f4cf27330bc7902b67d640be22049" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_5d0f4cf27330bc7902b67d640be22049 = L.map(
+                "map_5d0f4cf27330bc7902b67d640be22049",
+                {
+                    center: [23.5461, 74.3176],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 14,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_9dd1ad8b9dcd9a728e85e5c00a6a89f4 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_9dd1ad8b9dcd9a728e85e5c00a6a89f4.addTo(map_5d0f4cf27330bc7902b67d640be22049);
+        
+    
+            var marker_ba2e170c85a3e960b450e2c6a12fe4a1 = L.marker(
+                [23.5461, 74.3176],
+                {}
+            ).addTo(map_5d0f4cf27330bc7902b67d640be22049);
+        
+    
+            var icon_98a826af6318a93cbc23b02882204194 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_ba2e170c85a3e960b450e2c6a12fe4a1.setIcon(icon_98a826af6318a93cbc23b02882204194);
+        
+    
+        var popup_fe15113d9e220493c5c1b9a646436d1e = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_563588fed5067bd132100d43199b4c36 = $(`<div id="html_563588fed5067bd132100d43199b4c36" style="width: 100.0%; height: 100.0%;">                         <div>                             <span style="color:red; font-weight:bold;">Banswara Hotel</span><br>                             <a href="https://www.banswarahotel.com/" target="_blank">                                 <button style="margin-top:5px;">Visit Website</button>                             </a>                         </div>                         </div>`)[0];
+                popup_fe15113d9e220493c5c1b9a646436d1e.setContent(html_563588fed5067bd132100d43199b4c36);
+            
+        
+
+        marker_ba2e170c85a3e960b450e2c6a12fe4a1.bindPopup(popup_fe15113d9e220493c5c1b9a646436d1e)
+        ;
+
+        
+    
+    
+            var marker_6962201d9f9bab64a82b617c3b12608b = L.marker(
+                [23.55, 74.32],
+                {}
+            ).addTo(map_5d0f4cf27330bc7902b67d640be22049);
+        
+    
+            var icon_41283042b349ae7d1118ac63de82dd63 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_6962201d9f9bab64a82b617c3b12608b.setIcon(icon_41283042b349ae7d1118ac63de82dd63);
+        
+    
+        var popup_ffe8c33c99b253dec714f4c5bf1b904a = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_887e4f8262ad10e8f961049f3672597c = $(`<div id="html_887e4f8262ad10e8f961049f3672597c" style="width: 100.0%; height: 100.0%;">                         <div>                             <span style="color:red; font-weight:bold;">Royal Retreat</span><br>                             <a href="https://www.royalretreatbanswara.com/" target="_blank">                                 <button style="margin-top:5px;">Visit Website</button>                             </a>                         </div>                         </div>`)[0];
+                popup_ffe8c33c99b253dec714f4c5bf1b904a.setContent(html_887e4f8262ad10e8f961049f3672597c);
+            
+        
+
+        marker_6962201d9f9bab64a82b617c3b12608b.bindPopup(popup_ffe8c33c99b253dec714f4c5bf1b904a)
+        ;
+
+        
+    
+</script>
+</html>

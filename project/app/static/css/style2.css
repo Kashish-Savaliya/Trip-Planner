@@ -198,7 +198,7 @@ p {
     padding: 14px 20px;
 }
 .sidebar_menu .menu li:hover{
-    box-shadow: 0 0 4px rgba(122, 0, 124, 0.7);
+    box-shadow: 0 0 4px rgba(120, 0, 122, 0.702);
 }
 
 .sidebar_menu .menu i,a{

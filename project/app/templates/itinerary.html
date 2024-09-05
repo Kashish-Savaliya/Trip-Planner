@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itineraries</title>
+    <link rel="stylesheet" href="{% static "css/style2.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        form{
+
+        width:80%;
+        height:80%;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            {% comment %} background-image: url('{% static "Images/back.jpg" %}');{% endcomment %}
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */ 
+            background-color: #f0f0f0;
+            {% comment %} opacity: 0.3; {% endcomment %}
+            margin: 20px;
+            color: #333;
+        }
+        .back {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: no-repeat center center/cover;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        h1 {
+            color: #78007ab3;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h2 {
+            color: #78007ab3;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        h3 {
+            color: #78007ab3;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .form-section {
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+        }
+        button {
+            background-color: #003366;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #002244;
+        }
+        iframe {
+            border: none;
+            width: 80%;
+            height: 800px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .places-list {
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .places-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .places-grid > div {
+            flex: 1 1 calc(25% - 20px); /* 4 columns layout */
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .places-grid h3 {
+            font-size: 18px;
+            color: #78007ab3;
+            margin-bottom: 10px;
+        }
+        .places-grid ul {
+            list-style-type: square;
+            padding-left: 20px;
+            margin: 0;
+        }
+        .places-grid li {
+            margin-bottom: 5px;
+        }
+        .button-container {
+            display: inline-table;
+            gap: 10px; /* Space between the buttons */
+            justify-content: center; /* Center the buttons horizontally, optional */
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #78007ab3;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #80498b;
+        }
+    </style>
+</head>
+<body>
+    <div class="back">
+        <img src="{% static 'Images/back.jpg' %}" alt="Background Image" class="img">
+        <input type="checkbox" id="check" />
+        <div class="btn_one">
+        <label for="check">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+        </div>
+
+        <div class="sidebar_menu">
+        <div class="logo">
+            <a href="{% url 'main' %}">प्रवासPedia</a>
+        </div>
+
+        <div class="btn_two">
+            <label for="check">
+            <i class="fa-solid fa-xmark"></i>
+            </label>
+        </div>
+
+        <div class="menu">
+            <ul>
+                {% if user.is_authenticated %}
+                  <li>
+                    <i class="fa-solid fa-route"></i>
+                    <a href="{% url "plan_trip" %}">Itineraries</a>
+                  </li>
+                  <li>
+                    <i class="fa-regular fa-comments"></i>
+                    <a href="{% url 'review' %}">Feedback</a>
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" style="background: none; border: none; color: inherit; color: rgb(0, 64, 124); cursor: pointer; font-size: large;">
+                            LogOut
+                        </button>
+                    </form>
+                </li>
+                
+                {% else %}
+                  <li>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <a href="{% url 'login' %}">LogIn</a>
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <a href="{% url 'register' %}">Register</a>
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-image"></i>
+                    <a href="#">Gallery</a>
+                  </li>
+                  <li>
+                    <i class="fa-regular fa-map"></i>
+                    <a href="{% url 'stories' %}">Untold Stories</a>
+                  </li>
+                {% endif %}
+              </ul>
+        </div>
+
+        <div class="social_media">
+            <ul>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </ul>
+        </div>
+        </div> 
+        <center>
+        <h1>Your Planned Itineraries</h1>
+        <form action="{% url "plan_trip" %}" method="POST">{%csrf_token%}
+            <label for="start_state">Start State:</label>
+            <input type="text" id="start_state" name="start_state" required><br><br>
+
+            <label for="end_state">End State:</label>
+            <input type="text" id="end_state" name="end_state" required><br><br>
+
+            <label for="num_intermediate">Number of Intermediate States:</label>
+            <input type="number" id="num_intermediate" name="num_intermediate" min="0" required><br><br>
+
+            <div id="intermediate_states"></div>
+            <label for="place">Enter Place:</label>
+            <input type="text" id="place" name="place" required><br><br>
+
+            <label for="num_intermediate">How many days are you planning the trip for?</label>
+            <input type="number" id="days" name="days" min="0" required><br><br>
+
+            <div class="button-container">
+                <!-- Button 2 for viewing hotels -->
+                <button type="submit" name="view_hotels" class="btn">View Hotels</button>
+                <!-- Button 1 for planning a trip -->
+                <button type="submit" name="plan_trip" class="btn">Plan Trip</button>
+                <!-- Button 3 for transport services -->
+                <button type="submit" name="view_transportation" class="btn">Transport Services</button>
+            </div>
+        </form>
+        <div class="places-list">
+            <h2>Available Places by State</h2>
+            <div class="places-grid">
+                <div>
+                    <h3>Uttarakhand</h3>
+                    <ul>
+                        <li>Dhanaulti Hill station</li>
+                        <li>Lansdowne</li>
+                        <li>Chaukori hill station</li>
+                        <li>Nelong valley</li>
+                        <li>Harsil valley</li>
+                        <li>Chamoli</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Karnataka</h3>
+                    <ul>
+                        <li>Devaramane Hill</li>
+                        <li>Kalasa town</li>
+                        <li>Sasihitlu beach</li>
+                        <li>Kemmangundi Hill station</li>
+                        <li>Honnemaradu</li>
+                        <li>Kavledurga fort</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Himachal Pradesh</h3>
+                    <ul>
+                        <li>Hatu peak Narkanda</li>
+                        <li>Chitkul</li>
+                        <li>Pabbar valley</li>
+                        <li>Shangarh</li>
+                        <li>Shoja Village</li>
+                        <li>Barot valley</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Rajasthan</h3>
+                    <ul>
+                        <li>Khejarla fort</li>
+                        <li>Thar Desert</li>
+                        <li>Khimsar village</li>
+                        <li>Sambhar lake</li>
+                        <li>Banswara</li>
+                        <li>Kumbhalgarh Fort</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Meghalaya</h3>
+                    <ul>
+                        <li>Mawlynnong</li>
+                        <li>Mawphlang Sacred Forest</li>
+                        <li>Ranikor</li>
+                        <li>Garden of Caves</li>
+                        <li>Dawki River</li>
+                        <li>Laitkynsew</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Goa</h3>
+                    <ul>
+                        <li>Salaulim dam</li>
+                        <li>Cola beach</li>
+                        <li>Cabo de Rama beach</li>
+                        <li>Devil’s Finger Cave</li>
+                        <li>Sanguem village</li>
+                        <li>Butterfly beach</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Gujarat</h3>
+                    <ul>
+                        <li>Girmal Waterfall</li>
+                        <li>Bechtel beach</li>
+                        <li>KadiyaDhro</li>
+                        <li>Wilson Hill</li>
+                        <li>Zarwani Waterfall</li>
+                        <li>Keliya dam</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Jammu and Kashmir</h3>
+                    <ul>
+                        <li>Gurez Valley</li>
+                        <li>TarsarMarsar Trek</li>
+                        <li>Sanasar</li>
+                        <li>Chatpal</li>
+                        <li>Bhaderwah</li>
+                        <li>Pari Mahal</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <center>
+            {% if map_html %}
+                <h2>Map for {{ selected_place }}</h2>
+                <iframe src="{% static "map.html" %}"></iframe>
+            {% elif transportation_map_html %}
+                <h2>Transportation Map for {{ selected_place }}</h2>
+                <!-- Display the second map -->
+                <iframe src="{% static "transportation_map.html" %}" width="100%" height="500px"></iframe>
+            {% endif %}
+            </center>
+    </div>
+    <script>
+        document.getElementById('num_intermediate').addEventListener('input', function() {
+            const num = this.value;
+            const container = document.getElementById('intermediate_states');
+            container.innerHTML = '';
+
+            for (let i = 0; i < num; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = `intermediate_state_${i}`;
+                input.placeholder = `Intermediate State ${i + 1}`;
+                container.appendChild(input);
+                container.appendChild(document.createElement('br'));
+            }
+        });
+    </script>
+</body>
+</html>

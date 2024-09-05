@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_02b3143eb7c656ea959be8ea24524412 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_02b3143eb7c656ea959be8ea24524412" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_02b3143eb7c656ea959be8ea24524412 = L.map(
+                "map_02b3143eb7c656ea959be8ea24524412",
+                {
+                    center: [23.0225, 72.5714],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 14,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_acb79cffde1be4e46ce7249d279b9a90 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_acb79cffde1be4e46ce7249d279b9a90.addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var marker_efc7c40933c088e5f836eb152a77a07d = L.marker(
+                [23.0225, 72.5714],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_afa73aef9a01f84d4ead2ac663d46027 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_efc7c40933c088e5f836eb152a77a07d.setIcon(icon_afa73aef9a01f84d4ead2ac663d46027);
+        
+    
+        var popup_b3a2fd2b75d145ac4e2878cb3877f60a = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_24f487cd5ce0b8c551abc08b7dd40ee8 = $(`<div id="html_24f487cd5ce0b8c551abc08b7dd40ee8" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Ahmedabad</span><br>                                 <span style="color:blue; font-weight:bold;">Ahmedabad Cabs</span><br>                                 <span style="color:blue; font-weight:bold;">+91-9876543210</span><br>                                 <span style="color:blue; font-weight:bold;">Taxi</span><br>                                 <a href="https://www.ahmedabadcabs.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_b3a2fd2b75d145ac4e2878cb3877f60a.setContent(html_24f487cd5ce0b8c551abc08b7dd40ee8);
+            
+        
+
+        marker_efc7c40933c088e5f836eb152a77a07d.bindPopup(popup_b3a2fd2b75d145ac4e2878cb3877f60a)
+        ;
+
+        
+    
+    
+            var marker_37327193f063606b30014e584c0b2a2a = L.marker(
+                [23.0226, 72.5715],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_be5da5366d429e8c949ba19deb4a7a85 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_37327193f063606b30014e584c0b2a2a.setIcon(icon_be5da5366d429e8c949ba19deb4a7a85);
+        
+    
+        var popup_1149dd8b98ff72e8ac561a15fef7480e = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_86f0a09e53c668e5b4b812ca0a56a58a = $(`<div id="html_86f0a09e53c668e5b4b812ca0a56a58a" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Ahmedabad</span><br>                                 <span style="color:blue; font-weight:bold;">Gujarat State Road Transport Corporation</span><br>                                 <span style="color:blue; font-weight:bold;">+91-9999999999</span><br>                                 <span style="color:blue; font-weight:bold;">Bus</span><br>                                 <a href="https://www.gsrtc.in/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_1149dd8b98ff72e8ac561a15fef7480e.setContent(html_86f0a09e53c668e5b4b812ca0a56a58a);
+            
+        
+
+        marker_37327193f063606b30014e584c0b2a2a.bindPopup(popup_1149dd8b98ff72e8ac561a15fef7480e)
+        ;
+
+        
+    
+    
+            var marker_62c5593dc96f5a27a8fad74d09dc49ec = L.marker(
+                [23.023, 72.57],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_51306155b42b6965feba3648ca5fe9dc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_62c5593dc96f5a27a8fad74d09dc49ec.setIcon(icon_51306155b42b6965feba3648ca5fe9dc);
+        
+    
+        var popup_d6cf4348207bcfb3e93320fcd45e8d6a = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_54cb573c6ad0bed38f1be0b2103a13db = $(`<div id="html_54cb573c6ad0bed38f1be0b2103a13db" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Ahmedabad</span><br>                                 <span style="color:blue; font-weight:bold;">Gujarat Rentals</span><br>                                 <span style="color:blue; font-weight:bold;">+91-8888888888</span><br>                                 <span style="color:blue; font-weight:bold;">Rental Car</span><br>                                 <a href="https://www.gujaratrentals.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_d6cf4348207bcfb3e93320fcd45e8d6a.setContent(html_54cb573c6ad0bed38f1be0b2103a13db);
+            
+        
+
+        marker_62c5593dc96f5a27a8fad74d09dc49ec.bindPopup(popup_d6cf4348207bcfb3e93320fcd45e8d6a)
+        ;
+
+        
+    
+    
+            var marker_ff60206e14dbed756096506b6bec9b5d = L.marker(
+                [21.1702, 72.8311],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_e188fda15863101af87673c1f7864eee = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_ff60206e14dbed756096506b6bec9b5d.setIcon(icon_e188fda15863101af87673c1f7864eee);
+        
+    
+        var popup_6a4e1762cb4939809b9988c21b6e942b = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_d6c1447475210ef23c438590484e9a1c = $(`<div id="html_d6c1447475210ef23c438590484e9a1c" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Surat</span><br>                                 <span style="color:blue; font-weight:bold;">Surat Cabs</span><br>                                 <span style="color:blue; font-weight:bold;">+91-9123456789</span><br>                                 <span style="color:blue; font-weight:bold;">Taxi</span><br>                                 <a href="https://www.suratcabs.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_6a4e1762cb4939809b9988c21b6e942b.setContent(html_d6c1447475210ef23c438590484e9a1c);
+            
+        
+
+        marker_ff60206e14dbed756096506b6bec9b5d.bindPopup(popup_6a4e1762cb4939809b9988c21b6e942b)
+        ;
+
+        
+    
+    
+            var marker_35f340e520c10b6c68d2da8b24fce1f3 = L.marker(
+                [21.1703, 72.831],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_54a59861dcb9854fc4062aa4686271fc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_35f340e520c10b6c68d2da8b24fce1f3.setIcon(icon_54a59861dcb9854fc4062aa4686271fc);
+        
+    
+        var popup_6d62cc89ba78c7c84d201d291f0cd738 = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_fb4f94deb1f3bc9920b847fc10660ca3 = $(`<div id="html_fb4f94deb1f3bc9920b847fc10660ca3" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Surat</span><br>                                 <span style="color:blue; font-weight:bold;">Surat Transport</span><br>                                 <span style="color:blue; font-weight:bold;">+91-8778888888</span><br>                                 <span style="color:blue; font-weight:bold;">Bus</span><br>                                 <a href="https://www.surattransport.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_6d62cc89ba78c7c84d201d291f0cd738.setContent(html_fb4f94deb1f3bc9920b847fc10660ca3);
+            
+        
+
+        marker_35f340e520c10b6c68d2da8b24fce1f3.bindPopup(popup_6d62cc89ba78c7c84d201d291f0cd738)
+        ;
+
+        
+    
+    
+            var marker_21cfb8720d350aeaa82727cf5ca7a8b2 = L.marker(
+                [21.1705, 72.8305],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_f7ba96ba244bdf844bd2eb89338b3a48 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_21cfb8720d350aeaa82727cf5ca7a8b2.setIcon(icon_f7ba96ba244bdf844bd2eb89338b3a48);
+        
+    
+        var popup_affc2c5c36b59158cc7844f58d0ca5f9 = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_e064c43f61d46ad40f6dd3c7fde98f03 = $(`<div id="html_e064c43f61d46ad40f6dd3c7fde98f03" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Surat</span><br>                                 <span style="color:blue; font-weight:bold;">Surat Rentals</span><br>                                 <span style="color:blue; font-weight:bold;">+91-9666666666</span><br>                                 <span style="color:blue; font-weight:bold;">Rental Car</span><br>                                 <a href="https://www.suratrentals.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_affc2c5c36b59158cc7844f58d0ca5f9.setContent(html_e064c43f61d46ad40f6dd3c7fde98f03);
+            
+        
+
+        marker_21cfb8720d350aeaa82727cf5ca7a8b2.bindPopup(popup_affc2c5c36b59158cc7844f58d0ca5f9)
+        ;
+
+        
+    
+    
+            var marker_0a3ededa75f2e61df1adcb2405895f7a = L.marker(
+                [22.3078, 73.1812],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_c14953344caa01d287ab11960dac9c51 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_0a3ededa75f2e61df1adcb2405895f7a.setIcon(icon_c14953344caa01d287ab11960dac9c51);
+        
+    
+        var popup_a4d88df91829e898fb64e6e89d5d802b = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_f9afb0c33623f2441c32370fd4ee13ac = $(`<div id="html_f9afb0c33623f2441c32370fd4ee13ac" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Vadodara</span><br>                                 <span style="color:blue; font-weight:bold;">Vadodara Cabs</span><br>                                 <span style="color:blue; font-weight:bold;">+91-8234567890</span><br>                                 <span style="color:blue; font-weight:bold;">Taxi</span><br>                                 <a href="https://www.vadodaracabs.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_a4d88df91829e898fb64e6e89d5d802b.setContent(html_f9afb0c33623f2441c32370fd4ee13ac);
+            
+        
+
+        marker_0a3ededa75f2e61df1adcb2405895f7a.bindPopup(popup_a4d88df91829e898fb64e6e89d5d802b)
+        ;
+
+        
+    
+    
+            var marker_28e7cef51e59b9ae753f43fc191bef98 = L.marker(
+                [22.308, 73.18],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_32cfbf5181acbfd32732912b1498bc25 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_28e7cef51e59b9ae753f43fc191bef98.setIcon(icon_32cfbf5181acbfd32732912b1498bc25);
+        
+    
+        var popup_143833e5a57dd19c2cf09d667da4e99d = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_92924cfa85e5184bf1c98940c16c28de = $(`<div id="html_92924cfa85e5184bf1c98940c16c28de" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Vadodara</span><br>                                 <span style="color:blue; font-weight:bold;">Vadodara Transport</span><br>                                 <span style="color:blue; font-weight:bold;">+91-8444444444</span><br>                                 <span style="color:blue; font-weight:bold;">Bus</span><br>                                 <a href="https://www.vadodaratransport.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_143833e5a57dd19c2cf09d667da4e99d.setContent(html_92924cfa85e5184bf1c98940c16c28de);
+            
+        
+
+        marker_28e7cef51e59b9ae753f43fc191bef98.bindPopup(popup_143833e5a57dd19c2cf09d667da4e99d)
+        ;
+
+        
+    
+    
+            var marker_5891f069737a6ec8209b0a68f068e94e = L.marker(
+                [22.3082, 73.1795],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_3e923edcc894e2baf124e0fba7a325a4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5891f069737a6ec8209b0a68f068e94e.setIcon(icon_3e923edcc894e2baf124e0fba7a325a4);
+        
+    
+        var popup_ee825b3970e9aca39012123da483d6e7 = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_6e0ef99cadd7bf3487ef29d3e378afea = $(`<div id="html_6e0ef99cadd7bf3487ef29d3e378afea" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Vadodara</span><br>                                 <span style="color:blue; font-weight:bold;">City Rentals</span><br>                                 <span style="color:blue; font-weight:bold;">+91-9555555555</span><br>                                 <span style="color:blue; font-weight:bold;">Rental Car</span><br>                                 <a href="https://www.cityrentals.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_ee825b3970e9aca39012123da483d6e7.setContent(html_6e0ef99cadd7bf3487ef29d3e378afea);
+            
+        
+
+        marker_5891f069737a6ec8209b0a68f068e94e.bindPopup(popup_ee825b3970e9aca39012123da483d6e7)
+        ;
+
+        
+    
+    
+            var marker_610dafeef32d80cf14b6a66b1c8f5456 = L.marker(
+                [22.3039, 70.8022],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_c7823809728d7d0917f0e4377aa0443b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_610dafeef32d80cf14b6a66b1c8f5456.setIcon(icon_c7823809728d7d0917f0e4377aa0443b);
+        
+    
+        var popup_92d4dd018af3a778ef64bf7380c7fdfe = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_50dedad786d38cf594ac38baf9f524f4 = $(`<div id="html_50dedad786d38cf594ac38baf9f524f4" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Rajkot</span><br>                                 <span style="color:blue; font-weight:bold;">Rajkot Cabs</span><br>                                 <span style="color:blue; font-weight:bold;">+91-9324567890</span><br>                                 <span style="color:blue; font-weight:bold;">Taxi</span><br>                                 <a href="https://www.rajkotcabs.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_92d4dd018af3a778ef64bf7380c7fdfe.setContent(html_50dedad786d38cf594ac38baf9f524f4);
+            
+        
+
+        marker_610dafeef32d80cf14b6a66b1c8f5456.bindPopup(popup_92d4dd018af3a778ef64bf7380c7fdfe)
+        ;
+
+        
+    
+    
+            var marker_539b75dd2a1d0f83b64ed4af62a2fe29 = L.marker(
+                [22.304, 70.803],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_524650b8873afcf7c696c8a4bbd05855 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_539b75dd2a1d0f83b64ed4af62a2fe29.setIcon(icon_524650b8873afcf7c696c8a4bbd05855);
+        
+    
+        var popup_f079220d9b25caabda9ee9dc47190c06 = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_f7489da20b51972084e38207a7070400 = $(`<div id="html_f7489da20b51972084e38207a7070400" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Rajkot</span><br>                                 <span style="color:blue; font-weight:bold;">Rajkot Transport</span><br>                                 <span style="color:blue; font-weight:bold;">+91-8234567890</span><br>                                 <span style="color:blue; font-weight:bold;">Bus</span><br>                                 <a href="https://www.rajkottransport.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_f079220d9b25caabda9ee9dc47190c06.setContent(html_f7489da20b51972084e38207a7070400);
+            
+        
+
+        marker_539b75dd2a1d0f83b64ed4af62a2fe29.bindPopup(popup_f079220d9b25caabda9ee9dc47190c06)
+        ;
+
+        
+    
+    
+            var marker_2d7c45ac2bc2477106aa74cdb60397c2 = L.marker(
+                [22.3045, 70.8],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_cd71dba0390eaf91c50e15943cd84422 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2d7c45ac2bc2477106aa74cdb60397c2.setIcon(icon_cd71dba0390eaf91c50e15943cd84422);
+        
+    
+        var popup_7024da8c237711702e25e7e539eaece5 = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_ad112476ec8e97fcbb13ea3af6764e83 = $(`<div id="html_ad112476ec8e97fcbb13ea3af6764e83" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Rajkot</span><br>                                 <span style="color:blue; font-weight:bold;">Rajkot Rentals</span><br>                                 <span style="color:blue; font-weight:bold;">+91-9444444444</span><br>                                 <span style="color:blue; font-weight:bold;">Rental Car</span><br>                                 <a href="https://www.rajkotrentals.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_7024da8c237711702e25e7e539eaece5.setContent(html_ad112476ec8e97fcbb13ea3af6764e83);
+            
+        
+
+        marker_2d7c45ac2bc2477106aa74cdb60397c2.bindPopup(popup_7024da8c237711702e25e7e539eaece5)
+        ;
+
+        
+    
+    
+            var marker_d10ccf5a4f682482d0e752ddd3d5a89a = L.marker(
+                [23.2156, 72.6369],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_2a3fb19de6b858e5d37e73f98cab73fe = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_d10ccf5a4f682482d0e752ddd3d5a89a.setIcon(icon_2a3fb19de6b858e5d37e73f98cab73fe);
+        
+    
+        var popup_f24e0d23d29bd83f4a70e3cdccde8b9b = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_5e5ef7a0c4f572c616639cc9079fb278 = $(`<div id="html_5e5ef7a0c4f572c616639cc9079fb278" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Gandhinagar</span><br>                                 <span style="color:blue; font-weight:bold;">Gandhinagar Cabs</span><br>                                 <span style="color:blue; font-weight:bold;">+91-9412345678</span><br>                                 <span style="color:blue; font-weight:bold;">Taxi</span><br>                                 <a href="https://www.gandhinagarcabs.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_f24e0d23d29bd83f4a70e3cdccde8b9b.setContent(html_5e5ef7a0c4f572c616639cc9079fb278);
+            
+        
+
+        marker_d10ccf5a4f682482d0e752ddd3d5a89a.bindPopup(popup_f24e0d23d29bd83f4a70e3cdccde8b9b)
+        ;
+
+        
+    
+    
+            var marker_6eb89469bf64e5b3691a85e89d77738c = L.marker(
+                [23.216, 72.637],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_70f044d1b49e3fe3ad03fc74f4567982 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6eb89469bf64e5b3691a85e89d77738c.setIcon(icon_70f044d1b49e3fe3ad03fc74f4567982);
+        
+    
+        var popup_71ab0f8dec24fca807a21036c4405ce9 = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_800887df921981fa7affb7abb7c86bc7 = $(`<div id="html_800887df921981fa7affb7abb7c86bc7" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Gandhinagar</span><br>                                 <span style="color:blue; font-weight:bold;">Gandhinagar Transport</span><br>                                 <span style="color:blue; font-weight:bold;">+91-8222222222</span><br>                                 <span style="color:blue; font-weight:bold;">Bus</span><br>                                 <a href="https://www.gandhinagartransport.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_71ab0f8dec24fca807a21036c4405ce9.setContent(html_800887df921981fa7affb7abb7c86bc7);
+            
+        
+
+        marker_6eb89469bf64e5b3691a85e89d77738c.bindPopup(popup_71ab0f8dec24fca807a21036c4405ce9)
+        ;
+
+        
+    
+    
+            var marker_2f26d70b4c424cc577d9952ca3ac9f56 = L.marker(
+                [23.2165, 72.6355],
+                {}
+            ).addTo(map_02b3143eb7c656ea959be8ea24524412);
+        
+    
+            var icon_274e9e4d745b24a664bc03bda8db2681 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2f26d70b4c424cc577d9952ca3ac9f56.setIcon(icon_274e9e4d745b24a664bc03bda8db2681);
+        
+    
+        var popup_ee00c949d6a0cfba2e72f093ac60e969 = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_5104b362bc84917c8c3bb1b3f1b0aec9 = $(`<div id="html_5104b362bc84917c8c3bb1b3f1b0aec9" style="width: 100.0%; height: 100.0%;">                             <div>                                 <span style="color:blue; font-weight:bold;">Gandhinagar</span><br>                                 <span style="color:blue; font-weight:bold;">Gandhinagar Rentals</span><br>                                 <span style="color:blue; font-weight:bold;">+91-9333333333</span><br>                                 <span style="color:blue; font-weight:bold;">Rental Car</span><br>                                 <a href="https://www.gandhinagarrentals.com/" target="_blank">                                     <button style="margin-top:5px;">Visit Website</button>                                 </a>                             </div>                             </div>`)[0];
+                popup_ee00c949d6a0cfba2e72f093ac60e969.setContent(html_5104b362bc84917c8c3bb1b3f1b0aec9);
+            
+        
+
+        marker_2f26d70b4c424cc577d9952ca3ac9f56.bindPopup(popup_ee00c949d6a0cfba2e72f093ac60e969)
+        ;
+
+        
+    
+</script>
+</html>

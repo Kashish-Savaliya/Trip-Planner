@@ -19,7 +19,7 @@ class CustomUserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, default='Default Name')
     location = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

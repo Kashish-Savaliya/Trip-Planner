@@ -1,13 +1,46 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from asyncio.log import logger
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.contrib import messages
 from .models import User, State, Place, Nearby_Place, travel_and_cost, Review
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import logout as auth_logout
+from .forms import CustomUserCreationForm
 from django.contrib.auth.hashers import make_password, check_password
-import requests
-from .forms import ItineraryForm
+from .itineraries import create_graph, create_routes, plot_routes_on_map, hotel_data, places_data, transportation_data
+import folium
+import os
+from django.http import FileResponse, Http404
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from geopy.geocoders import Nominatim
+from .mail import schedule_emails, run_scheduler, start_scheduler_thread
 from django.core.mail import send_mail
-
+from django.conf import settings
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+# from .mail import schedule_emails, run_scheduler, start_scheduler_thread
 # Create your views here.
+
+
+def send_email(to_email, subject, body):
+    from_email = settings.DEFAULT_FROM_EMAIL  # Uses the default 'from' email set in settings.
+    print(to_email)
+    try:
+        validate_email(to_email)
+    except ValidationError:
+        print(f"Invalid recipient email: {to_email}")
+        return
+    try:
+        send_mail(
+            subject,
+            body,
+            from_email,
+            [to_email],  # List of recipient emails
+            fail_silently=False,  # Set to True if you want to suppress exceptions
+        )
+        print(f"Email sent successfully to {to_email}")
+    except Exception as e:
+        print(f"An error occurred while sending email: {e}")
 
 def home(request):
     return render(request, 'Home.html')
@@ -17,48 +50,18 @@ def main(request):
 
 def register(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        repassword = request.POST.get('repassword')
-        location = request.POST.get('location')
-
-        if password != repassword:
-            messages.error(request, 'Passwords do not match!')
-        elif User.objects.filter(email=email).exists():
-            messages.error(request, 'Email already exists.')
-        else:
-            hashed_password = make_password(password)
-            user = User(email=email, name='YourNameHere', location=location, password=hashed_password)
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
             user.save()
-            
-            messages.success(request, 'Successfully signed up! Please log in.')
-            return redirect('login')
-    return render(request, 'signup.html')
-
-
-def login(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        try:
-            user = User.objects.get(email=email)
-            if check_password(password, user.password):
-                # Manually log in the user (set session data here)
-                request.session['user_id'] = user.id
-                messages.success(request, "Successfully Logged In")
-                return redirect("main")
-            else:
-                messages.error(request, "Invalid credentials! Please try again")
-                return redirect("login")
-        except User.DoesNotExist:
-            messages.error(request, "Invalid credentials! Please try again")
-            return redirect("login")
-    return render(request, 'login.html')
-
-def logout(request):
-    logout(request)
-    messages.success(request,"Successfully Logged Out")
-    return redirect('main')
+            messages.success(request, "Registration successful. Please log in.")
+            return redirect('login')  # Redirect to the login page
+        else:
+            messages.error(request, "Registration failed. Please correct the errors.")
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'signup.html', {'form': form})
 
 
 def stories(request):
@@ -75,6 +78,7 @@ def north(request):
 
 def south(request):
     return render(request, 'South.html')
+
 
 def hidden_gems(request, direction, state):
     state_obj = get_object_or_404(State, state_name=state,direction=direction)
@@ -100,153 +104,175 @@ def place(request, direction, state, place):
     }
     return render(request, 'index2.html', context)
     
-
+@login_required
 def plan_trip(request):
-    if request.method == "POST":
-        form = ItineraryForm(request.POST)
-        if form.is_valid():
-            source = form.cleaned_data['source']
-            destination = form.cleaned_data['destination']
-            days = form.cleaned_data['days']
-            budget = form.cleaned_data['budget']
-            email = form.cleaned_data['email']
+    states = list(places_data.keys())
+    places = []
+    map_html = None
+    transportation_map_html = None
+    selected_state = None
+    selected_place = None
 
-            possible_routes = get_routes(source, destination)
-            hotels = get_hotels(destination, budget)
-            transport_modes = get_transport_modes(source, destination)
+    if request.method == 'POST':
+        # Get common form data
+        start_state = request.POST.get('start_state')
+        end_state = request.POST.get('end_state')
+        num_intermediate = int(request.POST.get('num_intermediate', 0))
+        intermediate_states = [request.POST.get(f'intermediate_state_{i}') for i in range(num_intermediate)]
+        no_of_days = request.POST.get('days')
+        if request.user.is_authenticated:
+            user_email = request.user.email
+            send_email(user_email, "Thanks for using Pravaspedia!", "We hope you have a great time! Please let us know your precious reviews about using our application")
 
-            total_cost = calculate_total_cost(hotels, transport_modes, days)
+        # Validate form data
+        if not start_state or not end_state:
+            return HttpResponse("Start state or end state not provided")
+        
+        # Check which button was clicked
+        if 'plan_trip' in request.POST:
+            # Logic for 'Plan Trip' button
+            G = create_graph()
+            if not G.has_node(start_state) or not G.has_node(end_state):
+                return HttpResponse("Invalid start or end state")
 
-            send_feedback_email(email, source, destination)
+            for state in intermediate_states:
+                if not G.has_node(state):
+                    return HttpResponse(f"Invalid intermediate state: {state}")
+            all_routes = create_routes(G, start_state, end_state, intermediate_states)
+            sorted_routes = sorted(all_routes, key=len)
+            top_5_routes = sorted_routes[:5]
+            plot_routes_on_map(top_5_routes, G)
+            
+            return redirect('view_map', filename='top_5_routes.html')
 
-            return render(request, 'itinerary.html',{
-                'source' : source,
-                'destination' : destination,
-                'days' : days,
-                'budget' : budget,
-                'total_cost' : total_cost,
-                'possible_routes' : possible_routes,
-                'hotels' : hotels,
-                'transport_modes' : transport_modes,
-            })
-        else:
-            form = ItineraryForm()
-        return render(request, 'plan_trip.html', {'form': form})
+        elif 'view_hotels' in request.POST:
+             # Logic for 'View Hotels' button
+            selected_state = end_state
+            selected_place = request.POST.get('place')
+
+            if selected_state:
+                places = places_data.get(selected_state, [])
+
+            if selected_place:
+                # Get the hotels for the selected place
+                hotels = hotel_data.get(selected_place, [])
+                if hotels:
+                    # Generate the map with markers for all hotels
+                    map_center = hotels[0]["location"]
+                    m = folium.Map(location=map_center, zoom_start=14)
+
+                    # Add hotel markers to the map
+                    for hotel in hotels:
+                        popup_content = f"""
+                        <div>
+                            <span style="color:red; font-weight:bold;">{hotel['name']}</span><br>
+                            <a href="{hotel['website']}" target="_blank">
+                                <button style="margin-top:5px;">Visit Website</button>
+                            </a>
+                        </div>
+                        """
+                        folium.Marker(
+                            location=hotel["location"],
+                            popup=folium.Popup(popup_content, max_width=400),
+                            icon=folium.Icon(color='red', icon='info-sign')
+                        ).add_to(m)
+
+                    # Ensure the 'static' directory exists
+                    if not os.path.exists('static'):
+                        os.makedirs('static')
+
+                    # Save the map to the 'static' directory
+                    static_dir = os.path.join(os.path.dirname(__file__), 'static')
+                    map_path = os.path.join(static_dir, 'map.html')
+                    print(f"Map path: {map_path}")
+                    m.save(map_path)
+                    map_html = 'map.html'
+                
+        elif 'view_transportation' in request.POST:
+        # Logic for 'View Transportation' button
+            # print("Transportation button clicked")
+            selected_state = start_state
+            selected_place = request.POST.get('place')
+            # print(f"{selected_state} : {selected_place}")
+            if selected_state:
+                places = places_data.get(selected_state, [])
+
+            if selected_place:
+                # Get the transportation options for the selected place
+                transportation = transportation_data.get(selected_state, [])
+                # print(f"{transportation}")
+                if transportation:
+                    # Generate the map with markers for all transportation options
+                    map_center = transportation[0]["services"][0]["location"]     
+                    m = folium.Map(location=map_center, zoom_start=14)
+
+                    # Add transportation markers to the map
+                    for city_data in transportation:
+                        city = city_data["city"]
+                        for transport in city_data["services"]:
+                            popup_content = f"""
+                            <div>
+                                <span style="color:blue; font-weight:bold;">{city}</span><br>
+                                <span style="color:blue; font-weight:bold;">{transport['operator']}</span><br>
+                                <span style="color:blue; font-weight:bold;">{transport['contact']}</span><br>
+                                <span style="color:blue; font-weight:bold;">{transport['type']}</span><br>
+                                <a href="{transport['website']}" target="_blank">
+                                    <button style="margin-top:5px;">Visit Website</button>
+                                </a>
+                            </div>
+                            """
+                            folium.Marker(
+                                location=transport["location"],
+                                popup=folium.Popup(popup_content, max_width=400),
+                                icon=folium.Icon(color='blue', icon='info-sign')
+                            ).add_to(m)
+
+                    # Ensure the 'static' directory exists
+                    if not os.path.exists('static'):
+                        os.makedirs('static')
+
+                    # Save the map to the 'static' directory
+                    static_dir = os.path.join(os.path.dirname(__file__), 'static')
+                    map_path = os.path.join(static_dir, 'transportation_map.html')
+                    print(f"Transportation Map HTML Path: {map_path}")
+                    m.save(map_path)
+                    transportation_map_html = 'transportation_map.html'
+                    # return redirect('view_map', filename='top_5_routes.html')
+                
+    return render(request, 'itinerary.html', {
+        'states': states,
+        'places': places,
+        'selected_state': selected_state,
+        'selected_place': selected_place,
+        'map_html': map_html,
+        'transportation_map_html' : transportation_map_html,
+    })
+     
+def view_map(request, filename):
+    # Construct the path to the static directory
+    file_path = os.path.join(settings.BASE_DIR, 'app', 'static', filename)
+    
+    if os.path.exists(file_path):
+        return FileResponse(open(file_path, 'rb'), content_type='text/html')
+    else:
+        raise Http404("File does not exist")
     
 
+@login_required    
 def getFeedback(request):
     if request.method == "POST":
         name = request.POST.get('name')
         location = request.POST.get('location')
         rating = request.POST.get('rating')
         review_text = request.POST.get('review')
-        feedback = Review(name=name, location=location, rating = rating, review=review)
+        feedback = Review(name=name, location=location, rating = rating, review=review_text)
         feedback.save()
     reviews = Review.objects.all()
-    print(reviews)
+    # print(reviews)
     return render(request, 'review.html',{'reviews':reviews})
 
-def get_hotels(destination, budget):
-    response = requests.get('API_URL',params={'location': destination, 'budget': budget})
-    return response.json()
 
-def get_transport_modes(source, destination):
-    response = requests.get('API_URL', params={'source': source, 'destination': destination})
-    return response.json()
 
-def send_feedback_email(email, source, destination):
-    send_mail('We\'d love your feedback!',
-        f'Thank you for using our service! How was your trip from {source} to {destination}? Please share your feedback by clicking the link: http://127.0.0.1:8000/feedback',
-        'your_email@example.com',
-        [email],
-        fail_silently=False,
-    )
-
-# def geocode_address(address, api_key):
-#     """
-#     Converts an address into geographical coordinates (latitude and longitude) using GraphHopper Geocoding API.
-
-#     Args:
-#     - address (str): The address or place name to be geocoded.
-#     - api_key (str): Your GraphHopper API key.
-
-#     Returns:
-#     - tuple: A tuple containing the latitude and longitude of the address, or None if geocoding fails.
-#     """
-#     url = "https://graphhopper.com/api/1/geocode"
-#     params = {
-#         "q": address,
-#         "key": api_key,
-#         "limit": 1
-#     }
-#     try:
-#         response = requests.get(url, params=params)
-#         data = response.json()
-
-#         if response.status_code == 200 and data['hits']:
-#             geometry = data['hits'][0]['point']
-#             return (geometry['lat'], geometry['lng'])
-#         else:
-#             print(f"Geocoding failed for address: {address}")
-#             return None
-#     except Exception as e:
-#         print(f"An error occurred during geocoding: {e}")
-#         return None
-
-# def get_routes(source, destination, graphhopper_api_key):
-#     """
-#     Fetches routes from the GraphHopper Directions API between a source and destination.
-
-#     Args:
-#     - source (tuple): The source coordinates as a tuple (latitude, longitude).
-#     - destination (tuple): The destination coordinates as a tuple (latitude, longitude).
-#     - graphhopper_api_key (str): Your GraphHopper API key.
-
-#     Returns:
-#     - list: A list of route instructions.
-#     """
-#     url = "https://graphhopper.com/api/1/route"
-#     params = {
-#         "point": [f"{source[0]},{source[1]}", f"{destination[0]},{destination[1]}"],
-#         "vehicle": "car",  # Default to 'car', can be changed dynamically
-#         "locale": "en",
-#         "points_encoded": "false",
-#         "instructions": "true",
-#         "key": "091baf08-7a73-4895-accb-0862f8fdabca"
-#     }
-#     try:
-#         response = requests.get(url, params=params)
-#         if response.status_code == 200:
-#             data = response.json()
-#             routes = data['paths'][0]['instructions']
-#             route_instructions = [step['text'] for step in routes]
-#             return route_instructions
-#         else:
-#             print(f"Error: Unable to fetch routes. Status Code: {response.status_code}")
-#             return []
-#     except Exception as e:
-#         print(f"An error occurred: {e}")
-#         return []
-
-# # Example usage
-# # Replace with your actual API key
-# graphhopper_api_key = "091baf08-7a73-4895-accb-0862f8fdabca"
-
-# # Example: Dynamic user input for source and destination
-# source_address = input("Enter source address or place name: ")  # e.g., "Surat, India"
-# destination_address = input("Enter destination address or place name: ")  # e.g., "Rajasthan, India"
-
-# # Convert addresses to coordinates using GraphHopper Geocoding API
-# source_coords = geocode_address(source_address, graphhopper_api_key)
-# destination_coords = geocode_address(destination_address, graphhopper_api_key)
-
-# # Ensure both geocoding results are valid
-# if source_coords and destination_coords:
-#     routes = get_routes(source_coords, destination_coords, graphhopper_api_key)
-#     for idx, route in enumerate(routes):
-#         print(f"Route {idx + 1}: {route}")
-# else:
-#     print("Unable to retrieve coordinates for the provided addresses.")
 
 
 

@@ -15,9 +15,8 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href=./css/photo.css"> 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static "css/photo.css" %}"> 
   </head>
   <body>
     <input type="checkbox" id="check" />
@@ -40,30 +39,43 @@
 
         <div class="menu">
           <ul>
-            <li>
-              <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              <a href="{% url 'login' %}">LogIn</a>
+            {% if user.is_authenticated %}
+              <li>
+                <i class="fa-solid fa-route"></i>
+                <a href="{% url "plan_trip" %}">Itineraries</a>
+              </li>
+              <li>
+                <i class="fa-regular fa-comments"></i>
+                <a href="{% url 'review' %}">Feedback</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; color: inherit; color: rgb(0, 64, 124); cursor: pointer; font-size: large;">
+                        LogOut
+                    </button>
+                </form>
             </li>
-            <li>
-              <i class="fa-solid fa-right-to-bracket"></i>
-              <a href="{% url 'register' %}">Register</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-image"></i>
-              <a href="#">Gallery</a>
-            </li>
-            <li>
-              <i class="fa-regular fa-map"></i>
-              <a href="{% url 'stories' %}">Untold Stories</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-route"></i>
-              <a href="#">Itineraries</a>
-            </li>
-            <li>
-              <i class="fa-regular fa-comments"></i>
-              <a href="{% url 'review' %}">Feedback</a>
-            </li>
+            
+            {% else %}
+              <li>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                <a href="{% url 'login' %}">LogIn</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <a href="{% url 'register' %}">Register</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-image"></i>
+                <a href="#">Gallery</a>
+              </li>
+              <li>
+                <i class="fa-regular fa-map"></i>
+                <a href="{% url 'stories' %}">Untold Stories</a>
+              </li>
+            {% endif %}
           </ul>
         </div>
 
