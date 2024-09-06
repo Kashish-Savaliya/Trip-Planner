@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PravasPedia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins&family=Shantell+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static "css/photo.css" %}"> 
+    <link rel="stylesheet" href="{% static "css/north.css" %}">
+  </head>
+  <body>
+    
+    <div class="back">
+      <img src="{% static "Images/back.jpg" %}" alt="Background Image" class="img">
+    <input type="checkbox" id="check" />
+      <div class="btn_one">
+        <label for="check">
+          <i class="fa-solid fa-bars"></i>
+        </label>
+      </div>
+
+      <div class="sidebar_menu">
+        <div class="logo">
+          <a href="{% url 'main' %}">प्रवासPedia</a>
+        </div>
+
+        <div class="btn_two">
+          <label for="check">
+            <i class="fa-solid fa-xmark"></i>
+          </label>
+        </div>
+
+        <div class="menu">
+          <ul>
+            <li>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <a href="{% url 'login' %}">LogIn</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-right-to-bracket"></i>
+              <a href="{% url 'register' %}">Register</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-image"></i>
+              <a href="#">Gallery</a>
+            </li>
+            <li>
+              <i class="fa-regular fa-map"></i>
+              <a href="{% url 'stories' %}">Untold Stories</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-route"></i>
+              <a href="#">Itineraries</a>
+            </li>
+            <li>
+              <i class="fa-regular fa-comments"></i>
+              <a href="#">Feedback</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="social_media">
+          <ul>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          </ul>
+        </div>
+      </div>
+
+        <div class="content">
+            <div class="card del">
+                <img class="card-img" src="{% static "Images/Delhi.jpg" %}" alt="Card image cap">
+                <div class="card-body">
+                    <a href="{% url 'hidden_gems' direction='north' state='delhi' %}">DELHI</a>
+                </div>
+            </div>
+            <div class="card pun">
+                <img class="card-img" src="{% static "Images/Punjab.jpg" %}" alt="Card image cap">
+                <div class="card-body">
+                    <a href="{% url 'hidden_gems' direction='north' state='punjab' %}">PUNJAB</a>
+                </div>
+            </div>
+            <div class="card hp">
+                <img class="card-img" src="{% static "Images/Himachal Pradesh.jpg" %}" alt="Card image cap">
+                <div class="card-body">
+                    <a href="{% url 'hidden_gems' direction='north' state='Himachal Pradesh' %}">HIMACHAL PRADESH</a>
+                </div>
+            </div>
+            <div class="card pun">
+                <img class="card-img" src="{% static "Images/Jammu & Kashmir.jpg" %}" alt="Card image cap">
+                <div class="card-body">
+                    <a href="{% url 'hidden_gems' direction='north' state='Jammu & Kashmir' %}">JAMMU & KASHMIR</a>
+                </div>
+            </div>
+            <div class="card mh">
+                <img class="card-img" src="{% static "Images/Uttarakhand.jpg" %}" alt="Card image cap">
+                <div class="card-body">
+                    <a href="{% url 'hidden_gems' direction='north' state='uttarakhand' %}">UTTARAKHAND</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+</html>
