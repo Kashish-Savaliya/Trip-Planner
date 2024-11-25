@@ -20,7 +20,6 @@ from django.core.exceptions import ValidationError
 
 # Create your views here.
 
-
 def send_email(to_email, subject, body):
     from_email = settings.DEFAULT_FROM_EMAIL  # Uses the default 'from' email set in settings.
     print(to_email)
